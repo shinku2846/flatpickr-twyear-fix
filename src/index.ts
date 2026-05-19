@@ -1060,7 +1060,10 @@ function FlatpickrInstance(
       "flatpickr-current-month"
     );
 
-    currentMonth.appendChild(monthElement);
+    if (!self.config.yearFirst) {
+      currentMonth.appendChild(monthElement);
+    }
+
     if (self.config.year_tw) {
       let yearAttrElement = createElement<HTMLSpanElement>(
         "span",
@@ -1071,6 +1074,10 @@ function FlatpickrInstance(
       currentMonth.appendChild(yearAttrElement);
     }
     currentMonth.appendChild(yearInput);
+
+    if (self.config.yearFirst) {
+      currentMonth.appendChild(monthElement);
+    }
 
     monthNavFragment.appendChild(currentMonth);
     container.appendChild(monthNavFragment);
